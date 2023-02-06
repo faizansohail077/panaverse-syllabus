@@ -1,7 +1,12 @@
-import { poppins } from '@/app/layout'
 import { Box } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+import { Poppins } from '@next/font/google'
+
+export const poppins = Poppins({
+    variable: '--poppin-font',
+    weight: ['800', '300', '400', '600']
+})
 
 const QuarterBox = ({ params, name, slug }: { params: { id: string }, name: string, slug: string }) => {
     const { id } = params

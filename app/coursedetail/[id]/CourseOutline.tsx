@@ -1,5 +1,4 @@
 
-import { poppins } from '@/app/layout'
 import { Box, Container } from '@chakra-ui/react'
 import React, { useEffect, useRef, useState } from 'react'
 import QuarterBox from './QuarterBox'
@@ -8,6 +7,12 @@ import { Coursedata } from './courseData';
 import { quarterDataType } from '@/app/type';
 import CourseContent from './CourseContent';
 
+import { Poppins } from '@next/font/google'
+
+export const poppins = Poppins({
+    variable: '--poppin-font',
+    weight: ['800', '300', '400', '600']
+})
 
 const CourseOutline = ({ params }: { params: { id: string } }) => {
     const searchParams = useSearchParams()

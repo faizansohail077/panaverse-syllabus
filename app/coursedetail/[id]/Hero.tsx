@@ -2,8 +2,15 @@
 import React from 'react'
 import styles from './page.module.css'
 import { Box, Button, Container, Heading, Text } from '@chakra-ui/react'
-import { poppins } from '@/app/layout'
 import Lottie from 'react-lottie'
+
+import { Poppins } from '@next/font/google'
+
+export const poppins = Poppins({
+    variable: '--poppin-font',
+    weight: ['800', '300', '400', '600']
+})
+
 
 const Hero = ({ name, description, animation }: { name: string| undefined, description: string| undefined, animation: any }) => {
     return (
