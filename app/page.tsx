@@ -1,19 +1,13 @@
-import Image from 'next/image'
-import { Inter, Poppins } from '@next/font/google'
+"use client"
 import styles from './page.module.css'
-
-// const inter = Poppins({ weight: ['400', '300', '600'], subsets: ["latin"] })
-const inter = Poppins({
-  variable: '--inter-font',
-  weight: ['300', '800']
-})
+import Hero from './Hero'
+import Objective from './Objective'
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      123
-
-
+      <Hero />
+      <Objective />
     </main>
   )
 }

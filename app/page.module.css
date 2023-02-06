@@ -1,14 +1,13 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
   min-height: 100vh;
 }
 
 .text {
-  font-family: var(--inter-font);
-  font-weight: 300;
-  
+  font-family: var(--poppins-font);
+  font-weight: 600;
+}
+
+.heading {
+  /* font-family: var(--poppins-font); */
+  font-weight: 800;
 }
