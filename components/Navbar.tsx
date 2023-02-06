@@ -35,7 +35,6 @@ export default function WithSubnavigation() {
                     color={useColorModeValue('gray.600', 'white')}
                     minH={'60px'}
                     py={{ base: 2 }}
-                    px={{ base: 6 }}
                     align={'center'}>
                     <Flex
                         flex={{ base: 1, md: 'auto' }}
@@ -174,7 +173,7 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
     {
         label: 'Home',
-        href: '#',
+        href: '/',
     },
     {
         label: 'Courses',

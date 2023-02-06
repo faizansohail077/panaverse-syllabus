@@ -5,11 +5,14 @@ import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
 export const Footer = () => (
 
     <Box
+        paddingTop={{ base: 5, md: 10 }}
+        paddingBottom={{ base: 5, md: 10 }}
+        marginTop={{ base: 5, md: 10 }}
         borderTop={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         px={{ base: 6 }} as="footer" role="contentinfo" py={{ base: '3' }}>
-        <Container  maxW='container.xl'>
+        <Container maxW='container.xl'>
 
             <Stack spacing={{ base: '4', md: '5' }}>
                 <Stack justify="space-between" direction="row" align="center">
