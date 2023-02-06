@@ -3,6 +3,7 @@ import { ProgramData } from '@/app/data'
 import { Box, Container } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
+import CourseOutline from './CourseOutline'
 import Hero from './Hero'
 import styles from './page.module.css'
 
@@ -25,6 +26,7 @@ const Courses = ({ params }: { params: { id: string } }) => {
     <div className={styles.main} >
       <Box>
         <Hero name={data?.name} description={data?.description} animation={data?.animation} />
+        <CourseOutline params={params}/>
       </Box>
     </div>
   )
