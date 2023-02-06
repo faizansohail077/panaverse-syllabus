@@ -2,10 +2,12 @@ import React from 'react'
 import { Card, CardBody, CardFooter, Button, Heading, Stack, Text, Box } from '@chakra-ui/react'
 import Lottie from 'react-lottie'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const CardComponent = ({ slug, animation, description, name }: { slug: string, animation: any, description: string, name: string }) => {
+    const router = useRouter()
     return (
-        <Card>
+        <Card cursor={'pointer'} onClick={() => router.push(`coursedetail/${slug}`)} >
             <CardBody>
                 <Box display={'flex'} height={{ base: 300, md: 100 }} alignItems={'center'} justifyContent={'center'} width={'100%'}
                 >

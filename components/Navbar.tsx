@@ -13,11 +13,14 @@ import {
     useColorModeValue,
     useBreakpointValue,
     useDisclosure,
+    Icon,
     Container,
+    PopoverContent,
 } from '@chakra-ui/react';
 import {
     HamburgerIcon,
     CloseIcon,
+    ChevronRightIcon
 } from '@chakra-ui/icons';
 import Image from 'next/image';
 
@@ -28,7 +31,7 @@ export default function WithSubnavigation() {
         <Box borderBottom={1}
             borderStyle={'solid'}
             borderColor={useColorModeValue('gray.200', 'gray.900')}>
-            <Container  maxW='container.xl' >
+            <Container maxW='container.xl' >
 
                 <Flex
                     bg={useColorModeValue('white', 'gray.800')}
@@ -95,6 +98,7 @@ export default function WithSubnavigation() {
 const DesktopNav = () => {
     const linkColor = useColorModeValue('gray.600', 'gray.200');
     const linkHoverColor = useColorModeValue('gray.800', 'white');
+    const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
     return (
         <Stack direction={'row'} spacing={4}>
@@ -113,12 +117,25 @@ const DesktopNav = () => {
                                     color: linkHoverColor,
                                 }}>
                                 <Flex>
-
                                     {navItem.label}
                                 </Flex>
                             </Link>
                         </PopoverTrigger>
-
+                        {navItem.children && (
+                            <PopoverContent
+                                border={0}
+                                boxShadow={'xl'}
+                                bg={popoverContentBgColor}
+                                p={4}
+                                rounded={'xl'}
+                                minW={'sm'}>
+                                <Stack>
+                                    {navItem.children.map((child) => (
+                                        <DesktopSubNav key={child.label} {...child} />
+                                    ))}
+                                </Stack>
+                            </PopoverContent>
+                        )}
 
                     </Popover>
                 </Box>
@@ -126,6 +143,39 @@ const DesktopNav = () => {
         </Stack>
     );
 };
+const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+    return (
+      <Link
+        href={`/coursedetail/${href}`}
+        role={'group'}
+        display={'block'}
+        p={2}
+        rounded={'md'}
+        _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+        <Stack direction={'row'} align={'center'}>
+          <Box>
+            <Text
+              transition={'all .3s ease'}
+              _groupHover={{ color: 'pink.400' }}
+              fontWeight={500}>
+              {label}
+            </Text>
+            {/* <Text fontSize={'sm'}>{subLabel}</Text> */}
+          </Box>
+          <Flex
+            transition={'all .3s ease'}
+            transform={'translateX(-10px)'}
+            opacity={0}
+            _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
+            justify={'flex-end'}
+            align={'center'}
+            flex={1}>
+            <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+          </Flex>
+        </Stack>
+      </Link>
+    );
+  };
 
 const MobileNav = () => {
     return (
@@ -140,9 +190,11 @@ const MobileNav = () => {
     );
 };
 
-const MobileNavItem = ({ label, href }: NavItem) => {
+const MobileNavItem = ({ label, href, children }: NavItem) => {
+    const { isOpen, onToggle } = useDisclosure();
+
     return (
-        <Stack spacing={4}>
+        <Stack spacing={4} onClick={children && onToggle}>
             <Flex
                 py={2}
                 as={Link}
@@ -158,7 +210,22 @@ const MobileNavItem = ({ label, href }: NavItem) => {
                     {label}
                 </Text>
             </Flex>
-
+            <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
+                <Stack
+                    mt={2}
+                    pl={4}
+                    borderLeft={1}
+                    borderStyle={'solid'}
+                    borderColor={useColorModeValue('gray.200', 'gray.700')}
+                    align={'start'}>
+                    {children &&
+                        children.map((child) => (
+                            <Link key={child.label} py={2} href={child.href}>
+                                {child.label}
+                            </Link>
+                        ))}
+                </Stack>
+            </Collapse>
 
         </Stack>
     );
@@ -168,6 +235,7 @@ interface NavItem {
     label: string;
     subLabel?: string;
     href?: string;
+    children?: { label: string, subLabel?: string, href: string }[]
 }
 
 const NAV_ITEMS: Array<NavItem> = [
@@ -177,6 +245,23 @@ const NAV_ITEMS: Array<NavItem> = [
     },
     {
         label: 'Courses',
-        href: '#',
+        children: [
+            {
+                label: 'Artificial Intelligence',
+                href: 'ai',
+            },
+            {
+                label: 'Cloud-Native Computing',
+                href: 'cnc',
+            },
+            {
+                label: 'Ambient Computing and IoT',
+                href: 'iot',
+            },
+            {
+                label: 'Web 3 and Metaverse',
+                href: 'bd',
+            },
+        ],
     },
 ];
