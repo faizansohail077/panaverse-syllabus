@@ -1,13 +1,7 @@
 "use client"
 import { Footer, Navbar } from '@/components'
 import './globals.css'
-import { Box, ChakraProvider } from '@chakra-ui/react'
-import { Inter, Poppins } from '@next/font/google'
-
-export const poppins = Poppins({
-  variable: '--poppin-font',
-  weight: ['800','300',  '400', '600']
-})
+import { ChakraProvider } from '@chakra-ui/react'
 
 export default function RootLayout({
   children,
@@ -24,10 +18,10 @@ export default function RootLayout({
       <body>
         <ChakraProvider>
 
-                
-          <Navbar  />
+
+          <Navbar />
           {/* <Box px={{ base: 6 }}> */}
-            {children}
+          {children}
           {/* </Box> */}
           <Footer />
         </ChakraProvider>
