@@ -30,6 +30,13 @@ const CourseOutline = ({ params }: { params: { id: string } }) => {
     ]
 
     useEffect(() => {
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }, [])
+
+    useEffect(() => {
         filterData()
         contentRef.current.scrollTop = 0
     }, [page])
