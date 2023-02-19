@@ -553,7 +553,7 @@ export const Coursedata = [
                     {
                         title: 'C Programming Part 2 (Weeks 6 and 7)', learning:
                             [
-                                { title: 'Topics 3 and 4  of  “The C programming language', link: '' },
+                                { title: 'Topics 3 and 4 of “The C programming language', link: '' },
                             ]
                     },
                     {
