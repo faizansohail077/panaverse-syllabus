@@ -6,7 +6,8 @@ import React from 'react'
 interface Data {
     title: string;
     learning: ({
-        title: string;
+        title?: string;
+        note?: string;
         link?: string;
     })[]
 }
@@ -18,7 +19,7 @@ const CourseContent = ({ contentRef, tag, course }: { contentRef: React.LegacyRe
             <Box>
                 {course?.map((c, index) => {
                     return (
-                        <Box marginBottom={2} >
+                        <Box marginBottom={14} >
                             <Flex textDecoration={'underline'} marginBottom={4} alignItems={'center'} >
                                 <Heading fontSize={'md'} >{index + 1}</Heading>
                                 <Heading fontSize={'md'} paddingLeft={2} >{c.title}</Heading>
@@ -27,6 +28,7 @@ const CourseContent = ({ contentRef, tag, course }: { contentRef: React.LegacyRe
                                 return (
                                     <Box marginBottom={2}>
                                         <Text >{item?.title}</Text>
+                                        <Text fontWeight={'bold'} textDecoration={"underline"} mt={5} >{item?.note}</Text>
                                         <Link style={{ fontSize: '14px', textDecoration: 'underline', color: 'rgba(0,0,255,0.3)' }} href={`${item?.link}`}> {item?.link} </Link>
                                     </Box>
                                 )

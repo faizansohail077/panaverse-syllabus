@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 const CardComponent = ({ slug, animation, description, name }: { slug: string, animation: any, description: string, name: string }) => {
     const router = useRouter()
     return (
-        <Card cursor={'pointer'} onClick={() => router.push(`coursedetail/${slug}`)} >
+        <Card cursor={'pointer'} onClick={() => router.push(`coursedetail/${slug}/?quarter=q1`)} >
             <CardBody>
                 <Box display={'flex'} height={{ base: 300, md: 100 }} alignItems={'center'} justifyContent={'center'} width={'100%'}
                 >
@@ -31,7 +31,7 @@ const CardComponent = ({ slug, animation, description, name }: { slug: string, a
                 </Stack>
             </CardBody>
             <CardFooter>
-                <Link href={`coursedetail/${slug}`} >
+                <Link href={`coursedetail/${slug}/?quarter=q1`} >
                     <Text textDecoration={'underline'} color={'blue.300'} >
 
                         Learn More
